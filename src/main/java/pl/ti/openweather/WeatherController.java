@@ -5,9 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.ti.openweather.models.weather.Coordinates;
-
-import java.util.Optional;
 
 @Controller
 public class WeatherController {
