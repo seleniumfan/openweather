@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prognoza pogody</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div style="width: 100%; max-width: 500px; margin: 100px auto;">
+    <h1>Prognoza pogody</h1>
+    <br/>
+    <form th:action="@{/}" method="post">
+        <input type="text" name="city" placeholder="Wprowadź nazwę miasta"/>
+        <input type="submit" value="Sprawdź pogodę"/>
+        <div style="color:red" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+    </form>
+    <br/>
+    <ul e th:if="${weather != null}" th:object="${weather}" class="list-group list-group-numbered">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Miasto</div>
+            </div>
+            <span th:text="*{city}" class="badge bg-secondary rounded-pill">Poznań</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Temperatura</div>
+            </div>
+            <span th:text="|*{temp} &deg;C|" class="badge bg-secondary rounded-pill">14</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Temperatura odczuwalna</div>
+            </div>
+            <span th:text="|*{feels_like} &deg;C|" class="badge bg-secondary rounded-pill">14</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Temperatura minimalna</div>
+            </div>
+            <span th:text="|*{temp_min} &deg;C|" class="badge bg-secondary rounded-pill">33</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Temperatura maksymalna</div>
+            </div>
+            <span th:text="|*{temp_max} &deg;C|" class="badge bg-secondary rounded-pill">38</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Ciśnienie</div>
+            </div>
+            <span th:text="|*{pressure} hPa|" class="badge bg-secondary rounded-pill">1000 hPa</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Wilgotność</div>
+            </div>
+            <span th:text="|*{humidity} %|" class="badge bg-secondary rounded-pill">40%</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Opis</div>
+            </div>
+            <span th:text="*{description}" class="badge bg-secondary rounded-pill">40</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Prędkość wiatru</div>
+            </div>
+            <span th:text="|*{windSpeed} m/s|" class="badge bg-secondary rounded-pill">1.01 m/s</span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
